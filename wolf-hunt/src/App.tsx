@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { GameStep } from './types/game';
-import SetupScreen from './screens/setup';
+import SetupScreen from './screens/SetupScreen';
 
 export default function App() {
   // Global game state
