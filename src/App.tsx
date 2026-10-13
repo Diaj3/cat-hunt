@@ -1,16 +1,22 @@
 import { useState } from 'react';
-import type { GameStep } from './types/game';
 import SetupScreen from './screens/SetupScreen';
+import type { GameStep, Player } from './types/game';
+import DistributionScreen from './screens/DistributionScreen';
 
 export default function App() {
-  // Global game state
   const [step, setStep] = useState<GameStep>('SETUP');
-  const [players, setPlayers] = useState<string[]>([]);
+  const [playerNames, setPlayerNames] = useState<string[]>([]);
+  const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
 
-  // This function is passed down to SetupScreen as a prop
-  const handleStartGame = (namesList: string[]) => {
-    setPlayers(namesList); // Save the names in App.tsx state
-    setStep('DISTRIBUTE'); // Move to the role distribution phase
+  const handleStartGame = (names: string[]) => {
+    setPlayerNames(names);
+    setStep('DISTRIBUTE');
+  };
+
+  const handleDistributionComplete = (assignedPlayers: Player[]) => {
+    setGamePlayers(assignedPlayers);
+    // ! TODO
+    setStep('NIGHT'); // Next step will be your Night Screen!
   };
 
   return (
@@ -20,21 +26,19 @@ export default function App() {
       )}
 
       {step === 'DISTRIBUTE' && (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
-          <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl text-center space-y-4">
-            <h1 className="text-2xl font-bold text-amber-500">Role Distribution Phase</h1>
-            <p className="text-slate-400 text-sm">
-              Players registered: <span className="text-white font-medium">{players.join(', ')}</span>
-            </p>
-            <p className="text-slate-500 text-xs">Next, we will build the pass-the-phone role reveal screen here!</p>
+        <DistributionScreen
+          playerNames={playerNames}
+          onDistributionComplete={handleDistributionComplete}
+        />
+      )}
 
-            <button
-              onClick={() => setStep('SETUP')}
-              className="text-amber-500 hover:underline text-sm font-medium cursor-pointer"
-            >
-              ← Back to Setup
-            </button>
-          </div>
+      {step === 'NIGHT' && (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-white p-6">
+          <h1 className="text-3xl font-bold text-amber-500 mb-4">Night Phase Starts Here!</h1>
+          <p className="text-slate-400 mb-6">Roles have been successfully distributed to {gamePlayers.length} players.</p>
+          <pre className="bg-slate-900 p-4 rounded-xl text-xs text-slate-300 max-w-sm overflow-auto">
+            {JSON.stringify(gamePlayers, null, 2)}
+          </pre>
         </div>
       )}
     </main>

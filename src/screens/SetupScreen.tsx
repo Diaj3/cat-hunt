@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 
 interface SetupScreenProps {
     onStartGame: (players: string[]) => void;
@@ -9,7 +9,7 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
     const [players, setPlayers] = useState<string[]>([]);
 
     // Handle adding a player to the list
-    const handleAddPlayer = (e: FormEvent<HTMLFormElement>) => {
+    const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         const trimmedName = currentName.trim();
 
