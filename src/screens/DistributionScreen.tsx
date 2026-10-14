@@ -94,10 +94,10 @@ export default function DistributionScreen({ playerNames, onDistributionComplete
 function assignRandomRoles(totalPlayers: number): Role[] {
     const roles: Role[] = [];
 
-    // Rule of thumb for Werewolf ratios: roughly 1 werewolf per 4-5 players
-    const werewolfCount = totalPlayers >= 8 ? 2 : 1;
+    // Rule of thumb for Cat ratios: roughly 1 cat per 4-5 players
+    const catCount = totalPlayers >= 8 ? 2 : 1;
 
-    for (let i = 0; i < werewolfCount; i++) roles.push('Werewolf');
+    for (let i = 0; i < catCount; i++) roles.push('Cat');
     roles.push('Seer');
     if (totalPlayers >= 5) roles.push('Witch');
 
@@ -117,13 +117,13 @@ function assignRandomRoles(totalPlayers: number): Role[] {
 
 function getRoleDescription(role: Role): string | undefined {
     switch (role) {
-        case 'Werewolf':
+        case 'Cat':
             return 'Wake up at night with your pack to choose a victim to eliminate.';
         case 'Seer':
             return 'Wake up each night to secretly check the true identity of one player.';
         case 'Witch':
             return 'You have a healing potion and a poison potion to use once per game.';
         case 'Villager':
-            return 'You have no special powers. Work with the village during the day to find the wolves.';
+            return 'You have no special powers. Work with the village during the day to find the cats.';
     }
 }

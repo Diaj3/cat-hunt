@@ -1,5 +1,5 @@
-# wolf-hunt
-Wolf Hunt web app
+# cat-hunt
+Cat Hunt web app
 
 TODO: Change to Cat hunt
 "survivors" are mice

@@ -32,7 +32,7 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
     const handleStartClick = () => {
         // TODO: Validate minimum number of players (e.g., at least 4)
         if (players.length < 4) {
-            alert('You need at least 4 players for Wolf Hunt!');
+            alert('You need at least 4 players for Cat Hunt!');
             return;
         }
         onStartGame(players);
@@ -42,7 +42,7 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
         <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
             <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
                 <div>
-                    <h1 className="text-3xl font-bold text-center text-amber-500 mb-2">Wolf Hunt</h1>
+                    <h1 className="text-3xl font-bold text-center text-amber-500 mb-2">Cat Hunt</h1>
                     <p className="text-slate-400 text-center text-sm">Add your players to the roster</p>
                 </div>
 

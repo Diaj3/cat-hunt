@@ -1,4 +1,4 @@
-export type Role = 'Werewolf' | 'Villager' | 'Seer' | 'Witch' | 'Hunter';
+export type Role = 'Cat' | 'Villager' | 'Seer' | 'Witch' | 'Hunter';
 
 export interface Player {
   id: number;
