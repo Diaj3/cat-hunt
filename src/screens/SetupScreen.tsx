@@ -1,42 +1,46 @@
-import { useState, type SubmitEvent } from 'react'
+import { useState, type SubmitEvent } from 'react';
+import { hasEnoughPlayers } from '../utils/has-enough-players';
 
 interface SetupScreenProps {
-  onStartGame: (players: string[]) => void
+  onStartGame: (players: string[]) => void;
 }
 
 export default function SetupScreen({ onStartGame }: SetupScreenProps) {
-  const [currentName, setCurrentName] = useState<string>('')
-  const [players, setPlayers] = useState<string[]>([])
+  const [currentName, setCurrentName] = useState<string>('');
+  const [players, setPlayers] = useState<string[]>([
+    'example1',
+    'example2',
+    'example3',
+    'example4',
+    'example5',
+  ]);
 
-  // Handle adding a player to the list
   const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const trimmedName = currentName.trim()
+    e.preventDefault();
+    const trimmedName = currentName.trim();
 
-    if (!trimmedName) return
+    if (!trimmedName) return;
     if (players.includes(trimmedName)) {
-      alert('This player name is already added!')
-      return
+      alert('This player name is already added!');
+      return;
     }
 
-    setPlayers([...players, trimmedName])
-    setCurrentName('') // Reset input box
-  }
+    setPlayers([...players, trimmedName]);
+    // Reset input box
+    setCurrentName('');
+  };
 
-  // Handle removing a player card
   const handleRemovePlayer = (indexToRemove: number) => {
-    setPlayers(players.filter((_, index) => index !== indexToRemove))
-  }
+    setPlayers(players.filter((_, index) => index !== indexToRemove));
+  };
 
-  // Final validation and start
   const handleStartClick = () => {
-    // TODO: Validate minimum number of players (e.g., at least 5)
-    if (players.length < 5) {
-      alert('You need at least 5 players for Cat Hunt!')
-      return
+    if (!hasEnoughPlayers(players.length)) {
+      alert('You need at least 5 players for Cat Hunt!');
+      return;
     }
-    onStartGame(players)
-  }
+    onStartGame(players);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
@@ -102,9 +106,9 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
           type="button"
           onClick={handleStartClick}
           // TODO: This hasn't been validated yet
-          disabled={players.length < 5}
+          disabled={!hasEnoughPlayers(players.length)}
           className={`w-full font-semibold py-3 rounded-xl transition-colors ${
-            players.length >= 5
+            hasEnoughPlayers(players.length)
               ? 'bg-amber-600 hover:bg-amber-500 text-slate-950 cursor-pointer'
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'
           }`}
@@ -113,5 +117,5 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
         </button>
       </div>
     </div>
-  )
+  );
 }

@@ -21,9 +21,7 @@ export default function App() {
 
   return (
     <main>
-      {step === 'SETUP' && (
-        <SetupScreen onStartGame={handleStartGame} />
-      )}
+      {step === 'SETUP' && <SetupScreen onStartGame={handleStartGame} />}
 
       {step === 'DISTRIBUTE' && (
         <DistributionScreen
@@ -34,8 +32,13 @@ export default function App() {
 
       {step === 'NIGHT' && (
         <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-white p-6">
-          <h1 className="text-3xl font-bold text-amber-500 mb-4">Night Phase Starts Here!</h1>
-          <p className="text-slate-400 mb-6">Roles have been successfully distributed to {gamePlayers.length} players.</p>
+          <h1 className="text-3xl font-bold text-amber-500 mb-4">
+            Night Phase Starts Here!
+          </h1>
+          <p className="text-slate-400 mb-6">
+            Roles have been successfully distributed to {gamePlayers.length}{' '}
+            players.
+          </p>
           <pre className="bg-slate-900 p-4 rounded-xl text-xs text-slate-300 max-w-sm overflow-auto">
             {JSON.stringify(gamePlayers, null, 2)}
           </pre>
