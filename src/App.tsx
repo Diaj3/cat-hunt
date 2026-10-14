@@ -16,7 +16,7 @@ export default function App() {
   const handleDistributionComplete = (assignedPlayers: Player[]) => {
     setGamePlayers(assignedPlayers);
     // ! TODO
-    setStep('NIGHT'); // Next step will be your Night Screen!
+    setStep('NIGHT'); // ! TODO Night Screen!
   };
 
   return (

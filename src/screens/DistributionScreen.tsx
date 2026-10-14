@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import type { Player, Role } from '../types/game';
+import type { Player } from '../types/game';
+import { assignRandomRoles } from '../utils/assign-random-roles';
+import { getRoleDescription } from '../utils/get-role-description';
 
 interface DistributionScreenProps {
     playerNames: string[];
@@ -8,7 +10,7 @@ interface DistributionScreenProps {
 
 export default function DistributionScreen({ playerNames, onDistributionComplete }: DistributionScreenProps) {
     // 1. Initialize players and assign random roles when this screen loads
-    const [players, setPlayers] = useState<Player[]>(() => {
+    const [players] = useState<Player[]>(() => {
         const assignedRoles = assignRandomRoles(playerNames.length);
         return playerNames.map((name, index) => ({
             id: index,
@@ -87,43 +89,4 @@ export default function DistributionScreen({ playerNames, onDistributionComplete
             </div>
         </div>
     );
-}
-
-// --- Helper Functions ---
-
-function assignRandomRoles(totalPlayers: number): Role[] {
-    const roles: Role[] = [];
-
-    // Rule of thumb for Cat ratios: roughly 1 cat per 4-5 players
-    const catCount = totalPlayers >= 8 ? 2 : 1;
-
-    for (let i = 0; i < catCount; i++) roles.push('Cat');
-    roles.push('Seer');
-    if (totalPlayers >= 5) roles.push('Witch');
-
-    // Fill remaining slots with Villagers
-    while (roles.length < totalPlayers) {
-        roles.push('Villager');
-    }
-
-    // Shuffle array randomly (Fisher-Yates shuffle)
-    for (let i = roles.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [roles[i], roles[j]] = [roles[j], roles[i]];
-    }
-
-    return roles;
-}
-
-function getRoleDescription(role: Role): string | undefined {
-    switch (role) {
-        case 'Cat':
-            return 'Wake up at night with your pack to choose a victim to eliminate.';
-        case 'Seer':
-            return 'Wake up each night to secretly check the true identity of one player.';
-        case 'Witch':
-            return 'You have a healing potion and a poison potion to use once per game.';
-        case 'Villager':
-            return 'You have no special powers. Work with the village during the day to find the cats.';
-    }
 }
