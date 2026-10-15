@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import type { Player } from '../types/game';
+import type { Player, Role } from '../types/game';
 import { assignRandomRoles } from '../utils/assign-random-roles';
-import { getRoleDescription } from '../utils/get-role-description';
+import {
+  getRoleDescription,
+  MINI_ROLE_DESCRIPTIONS,
+  getRoleSummary,
+} from '../utils/get-role-description';
 import { getRoleAvatar } from '../utils/get-role-avatar';
 
 interface DistributionScreenProps {
@@ -55,23 +59,60 @@ export default function DistributionScreen({
         {isFinished ? (
           <div className="space-y-6 py-4">
             <div className="text-6xl">👑</div>
+
             <div className="space-y-2">
               <h2 className="text-2xl font-bold text-amber-500">
                 All Roles Assigned!
               </h2>
               <p className="text-slate-300 text-sm">
-                Pass the phone back to the {` `}
+                Pass the phone back to the{' '}
                 <strong className="text-amber-400">Host</strong>.
               </p>
             </div>
 
-            <p className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800">
+            {/* ROLE SUMMARY GRID */}
+            <div className="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-3 text-left">
+              <h3 className="text-xs uppercase tracking-wider text-slate-400 font-mono text-center">
+                Game Roster Summary
+              </h3>
+
+              <div className="space-y-2 text-sm">
+                {Object.entries(getRoleSummary(players)).map(
+                  ([role, count]) => {
+                    const roleKey = role as Role;
+                    const meta = MINI_ROLE_DESCRIPTIONS[roleKey];
+
+                    return (
+                      <div
+                        key={role}
+                        className="group relative flex items-center justify-between bg-slate-900 border border-slate-800 px-3 py-2.5 rounded-lg hover:border-amber-500/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span>{meta?.icon ?? '🐾'}</span>
+                          <span className="font-medium text-slate-200">
+                            {role}
+                          </span>
+                        </div>
+
+                        <span className="text-amber-400 font-mono font-bold">
+                          x{count}
+                        </span>
+                      </div>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+
+            {/* HOST INSTRUCTION CALLOUT */}
+            <p className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 text-left leading-relaxed">
               Host, make sure everyone has their eyes closed before tapping
               below to begin the night! From now on, you shall read all
               necessary instructions to the players, and you will be the one to
               manage the game flow.
             </p>
 
+            {/* START BUTTON */}
             <button
               onClick={handleStartGame}
               className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"

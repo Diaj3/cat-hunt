@@ -1,4 +1,4 @@
-import type { Role } from '../types/game';
+import type { Player, Role } from '../types/game';
 
 export function getRoleDescription(role: Role): string | undefined {
   switch (role) {
@@ -16,4 +16,45 @@ export function getRoleDescription(role: Role): string | undefined {
     default:
       return `You have no special powers. Work with the other mice during the day to find the cats.`;
   }
+}
+
+export const MINI_ROLE_DESCRIPTIONS: Record<
+  Role,
+  { icon: string; shortDesc: string }
+> = {
+  Cat: {
+    icon: '🐱',
+    shortDesc: 'Wakes up at night to choose a mouse to eliminate.',
+  },
+  Mouse: {
+    icon: '🐭',
+    shortDesc: 'Innocent mouse. Votes during the day to find cats.',
+  },
+  Owl: {
+    icon: '🦉',
+    shortDesc: 'Inspects one player each night to learn their role.',
+  },
+  'Guard Dog': {
+    icon: '🐶',
+    shortDesc:
+      'Protects one player each night from a cat attack. It can protect itself.',
+  },
+  Raccoon: {
+    icon: '🦡',
+    shortDesc: 'Solo trickster. Wins if voted out.',
+  },
+  Host: {
+    icon: '🧑',
+    shortDesc: 'Game Master. Announces roles and leads the story.',
+  },
+};
+
+export function getRoleSummary(players: Player[]): Record<string, number> {
+  return players.reduce(
+    (acc, player) => {
+      acc[player.role] = (acc[player.role] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
 }
