@@ -13,7 +13,7 @@ export default function DistributionScreen({
   playerNames,
   onDistributionComplete,
 }: DistributionScreenProps) {
-  // 1. Initialize players and assign random roles when this screen loads
+  // Initialize players and assign random roles when this screen loads
   const [players] = useState<Player[]>(() => {
     const assignedRoles = assignRandomRoles(playerNames.length);
     return playerNames.map((name, index) => ({
@@ -26,17 +26,22 @@ export default function DistributionScreen({
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const currentPlayer = players[currentIndex];
 
   const handleNext = () => {
-    setIsRevealed(false); // Lock it before moving to the next person
+    // Lock it before moving to the next person
+    setIsRevealed(false);
     if (currentIndex + 1 < players.length) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      // Everyone has seen their role! Send the final player array up to App.tsx
-      onDistributionComplete(players);
+      setIsFinished(true);
     }
+  };
+
+  const handleStartGame = () => {
+    onDistributionComplete(players);
   };
 
   return (
@@ -46,9 +51,36 @@ export default function DistributionScreen({
         <div className="text-xs uppercase tracking-wider text-slate-500 font-mono">
           Player {currentIndex + 1} of {players.length}
         </div>
+        {/* FINAL HOST HANDOFF CARD */}
+        {isFinished ? (
+          <div className="space-y-6 py-4">
+            <div className="text-6xl">👑</div>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-amber-500">
+                All Roles Assigned!
+              </h2>
+              <p className="text-slate-300 text-sm">
+                Pass the phone back to the {` `}
+                <strong className="text-amber-400">Host</strong>.
+              </p>
+            </div>
 
-        {!isRevealed ? (
-          // --- BLINDFOLD STATE (Safe to pass device) ---
+            <p className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800">
+              Host, make sure everyone has their eyes closed before tapping
+              below to begin the night! From now on, you shall read all
+              necessary instructions to the players, and you will be the one to
+              manage the game flow.
+            </p>
+
+            <button
+              onClick={handleStartGame}
+              className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
+            >
+              Start Night Phase
+            </button>
+          </div>
+        ) : !isRevealed ? (
+          // --- BLINDFOLD STATE ---
           <div className="space-y-6 py-4">
             <div className="space-y-2">
               <h2 className="text-xl text-slate-300">Pass the device to</h2>
