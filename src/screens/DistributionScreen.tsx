@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Player } from '../types/game';
 import { assignRandomRoles } from '../utils/assign-random-roles';
 import { getRoleDescription } from '../utils/get-role-description';
+import { getRoleAvatar } from '../utils/get-role-avatar';
 
 interface DistributionScreenProps {
   playerNames: string[];
@@ -77,6 +78,13 @@ export default function DistributionScreen({
               <h2 className="text-4xl font-extrabold text-amber-400 tracking-wide uppercase">
                 {currentPlayer.role}
               </h2>
+              <div className="flex justify-center mt-4">
+                <img
+                  src={getRoleAvatar(currentPlayer.role)}
+                  alt={currentPlayer.role}
+                  className="bg-slate-950 border border-slate-800 rounded-xl"
+                />
+              </div>
             </div>
 
             <div className="bg-slate-950 border border-slate-800 p-4 rounded-xl text-slate-300 text-sm">

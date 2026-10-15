@@ -8,6 +8,7 @@ interface SetupScreenProps {
 export default function SetupScreen({ onStartGame }: SetupScreenProps) {
   const [currentName, setCurrentName] = useState<string>('');
   const [players, setPlayers] = useState<string[]>([
+    // Temp data for testing
     'example1',
     'example2',
     'example3',
@@ -105,7 +106,6 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
         <button
           type="button"
           onClick={handleStartClick}
-          // TODO: This hasn't been validated yet
           disabled={!hasEnoughPlayers(players.length)}
           className={`w-full font-semibold py-3 rounded-xl transition-colors ${
             hasEnoughPlayers(players.length)

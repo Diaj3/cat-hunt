@@ -10,8 +10,10 @@ export function getRoleDescription(role: Role): string | undefined {
       return 'You watch over the mice! Each night, you can protect one target from a cat attack.';
     case 'Raccoon':
       return "You're a Jester! You are on your own team. Trick the mice into voting you out during the day to win the game alone!";
+    case 'Host':
+      return 'You are the Game Master! Announce your role to everyone. You hold the phone, read the night prompts, and lead the story.';
     // Mouse use case
     default:
-      return 'You have no special powers. Work with the other mice during the day to find the cats.';
+      return `You have no special powers. Work with the other mice during the day to find the cats.`;
   }
 }
