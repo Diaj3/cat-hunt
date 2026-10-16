@@ -45,7 +45,7 @@ export default function DistributionScreen({
   };
 
   const handleStartGame = () => {
-    onDistributionComplete(players);
+    onDistributionComplete(players.filter((p) => p.role !== 'Host'));
   };
 
   return (
@@ -106,10 +106,14 @@ export default function DistributionScreen({
 
             {/* HOST INSTRUCTION CALLOUT */}
             <p className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 text-left leading-relaxed">
-              Host, make sure everyone has their eyes closed before tapping
-              below to begin the night! From now on, you shall read all
-              necessary instructions to the players, and you will be the one to
-              manage the game flow.
+              Host,{' '}
+              <strong className="text-slate-100">
+                read the game roster summary
+              </strong>{' '}
+              and make sure every player knows their role. Make sure everyone
+              has their eyes closed before tapping below to begin the night!
+              From now on, you shall read all necessary instructions to the
+              players, and you will be the one to manage the game flow.
             </p>
 
             {/* START BUTTON */}

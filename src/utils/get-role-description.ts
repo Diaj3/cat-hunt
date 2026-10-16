@@ -7,7 +7,7 @@ export function getRoleDescription(role: Role): string | undefined {
     case 'Owl':
       return 'Wake up each night to secretly check the true identity of one player.';
     case 'Guard Dog':
-      return 'You watch over the mice! Each night, you can protect one target from a cat attack.';
+      return 'You watch over the mice! Each night, you can protect one target or yourself from a cat attack.';
     case 'Raccoon':
       return "You're a Jester! You are on your own team. Trick the mice into voting you out during the day to win the game alone!";
     case 'Host':
