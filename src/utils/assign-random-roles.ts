@@ -22,10 +22,10 @@ export function assignRandomRoles(totalPlayers: number): Role[] {
   }
   roles.push('Host');
 
-  if (totalPlayers >= 6) {
+  if (totalPlayers >= 7) {
     roles.push('Guard Dog');
   }
-  if (totalPlayers >= 7) {
+  if (totalPlayers >= 8) {
     roles.push('Raccoon');
   }
   if (totalPlayers >= 10) {

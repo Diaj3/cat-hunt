@@ -89,7 +89,6 @@ export default function NightScreen({
           </span>
         </div>
 
-        {/* ---------------- 1. CATS PHASE ---------------- */}
         {phase === 'CATS' && (
           <CatPhase
             livingPlayers={livingPlayers}
@@ -99,7 +98,6 @@ export default function NightScreen({
           />
         )}
 
-        {/* ---------------- 2. GUARD DOG PHASE ---------------- */}
         {phase === 'GUARD_DOG' && (
           <GuardDogPhase
             isGuardDogAlive={isGuardDogAlive}
@@ -110,7 +108,6 @@ export default function NightScreen({
           />
         )}
 
-        {/* ---------------- 3. OWL PHASE ---------------- */}
         {phase === 'OWL' && (
           <OwlPhase
             isOwlAlive={isOwlAlive}
@@ -119,7 +116,6 @@ export default function NightScreen({
           />
         )}
 
-        {/* ---------------- 4. NIGHT SUMMARY / DAWN ---------------- */}
         {phase === 'SUMMARY' && (
           <div className="space-y-6 text-center">
             <div className="flex justify-center mt-4">

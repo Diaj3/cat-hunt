@@ -42,7 +42,7 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
 
   const handleStartClick = () => {
     if (!hasEnoughPlayers(players.length)) {
-      alert('You need at least 5 players for Cat Hunt!');
+      alert('You need at least 6 players for Cat Hunt!');
       return;
     }
     onStartGame(players);

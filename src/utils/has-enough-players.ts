@@ -1,4 +1,4 @@
-// TODO: Validate minimum number of players (atm 5)
+// TODO: Validate minimum number of players (atm 6)
 export function hasEnoughPlayers(playerCount: number): boolean {
-  return playerCount >= 5;
+  return playerCount >= 6;
 }
