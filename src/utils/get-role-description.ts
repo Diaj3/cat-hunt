@@ -1,16 +1,17 @@
-import type { Player, Role } from '../types/game';
+import type { Player } from '../types/player';
+import type { Role } from '../types/role';
 
 export function getRoleDescription(role: Role): string | undefined {
   switch (role) {
-    case 'Cat':
+    case 'CAT':
       return 'Wake up at night to hunt and choose a victim to eliminate.';
-    case 'Owl':
+    case 'OWL':
       return 'Wake up each night to secretly check the true identity of one player.';
-    case 'Guard Dog':
+    case 'GUARD DOG':
       return 'You watch over the mice! Each night, you can protect one target or yourself from a cat attack.';
-    case 'Raccoon':
+    case 'RACCOON':
       return "You're a Jester! You are on your own team. Trick the mice into voting you out during the day to win the game alone!";
-    case 'Host':
+    case 'HOST':
       return 'You are the Game Master! Announce your role to everyone. You hold the phone, read the night prompts, and lead the story.';
     // Mouse use case
     default:
@@ -22,28 +23,28 @@ export const MINI_ROLE_DESCRIPTIONS: Record<
   Role,
   { icon: string; shortDesc: string }
 > = {
-  Cat: {
+  CAT: {
     icon: '🐱',
     shortDesc: 'Wakes up at night to choose a mouse to eliminate.',
   },
-  Mouse: {
+  MOUSE: {
     icon: '🐭',
     shortDesc: 'Innocent mouse. Votes during the day to find cats.',
   },
-  Owl: {
+  OWL: {
     icon: '🦉',
     shortDesc: 'Inspects one player each night to learn their role.',
   },
-  'Guard Dog': {
+  'GUARD DOG': {
     icon: '🐶',
     shortDesc:
       'Protects one player each night from a cat attack. It can protect itself.',
   },
-  Raccoon: {
+  RACCOON: {
     icon: '🦡',
     shortDesc: 'Solo trickster. Wins if voted out.',
   },
-  Host: {
+  HOST: {
     icon: '🧑',
     shortDesc: 'Game Master. Announces roles and leads the story.',
   },

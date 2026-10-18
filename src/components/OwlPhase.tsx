@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { Player, Role } from '../types/game';
+import type { Player } from '../types/player';
+import type { Role } from '../types/role';
 
 interface OwlPhaseProps {
   isOwlAlive: boolean;

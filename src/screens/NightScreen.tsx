@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import type { Player } from '../types/game';
 import OwlPhase from '../components/OwlPhase';
 import GuardDogPhase from '../components/GuardDogPhase';
 
-import morning from './../assets/others/morning.jpeg';
+import morning from './../assets/others/morning.png';
 import CatPhase from '../components/CatPhase';
+import type { Player } from '../types/player';
 
 interface NightScreenProps {
   players: Player[];
@@ -27,15 +27,15 @@ export default function NightScreen({
   const [guardTargetId, setGuardTargetId] = useState<number | null>(null);
 
   // In-game role checks
-  const isGuardDogInGame = players.some((p) => p.role === 'Guard Dog');
-  const isOwlInGame = players.some((p) => p.role === 'Owl');
+  const isGuardDogInGame = players.some((p) => p.role === 'GUARD DOG');
+  const isOwlInGame = players.some((p) => p.role === 'OWL');
 
   // Alive role checks
   const livingPlayers = players.filter((p) => p.isAlive);
   const isGuardDogAlive = players.some(
-    (p) => p.role === 'Guard Dog' && p.isAlive,
+    (p) => p.role === 'GUARD DOG' && p.isAlive,
   );
-  const isOwlAlive = players.some((p) => p.role === 'Owl' && p.isAlive);
+  const isOwlAlive = players.some((p) => p.role === 'OWL' && p.isAlive);
 
   // Phase Handlers
   const handleNextFromCats = () => {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import type { Player, Role } from '../types/game';
 import { assignRandomRoles } from '../utils/assign-random-roles';
 import {
   getRoleDescription,
@@ -7,6 +6,8 @@ import {
   getRoleSummary,
 } from '../utils/get-role-description';
 import { getRoleAvatar } from '../utils/get-role-avatar';
+import type { Player } from '../types/player';
+import type { Role } from '../types/role';
 
 interface DistributionScreenProps {
   playerNames: string[];
@@ -45,7 +46,7 @@ export default function DistributionScreen({
   };
 
   const handleStartGame = () => {
-    onDistributionComplete(players.filter((p) => p.role !== 'Host'));
+    onDistributionComplete(players.filter((p) => p.role !== 'HOST'));
   };
 
   return (

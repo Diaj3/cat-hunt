@@ -1,4 +1,5 @@
-import type { Player } from '../types/game';
+import type { Player } from '../types/player';
+import type { WinnerRole } from '../types/winnerRole';
 
 /**
  * Win conditions:
@@ -10,21 +11,21 @@ import type { Player } from '../types/game';
 export const checkWinConditions = (
   currentPlayers: Player[],
   ejectedPlayer: Player | null,
-): 'MICE' | 'CATS' | 'RACCOON' | null => {
-  if (ejectedPlayer && ejectedPlayer.role === 'Raccoon') {
+): WinnerRole | null => {
+  if (ejectedPlayer && ejectedPlayer.role === 'RACCOON') {
     return 'RACCOON';
   }
 
   const living = currentPlayers.filter((p) => p.isAlive);
-  const catsCount = living.filter((p) => p.role === 'Cat').length;
+  const catsCount = living.filter((p) => p.role === 'CAT').length;
   const nonCatsCount = living.length - catsCount;
 
   if (catsCount === 0) {
-    return 'MICE';
+    return 'MOUSE';
   }
 
   if (catsCount >= nonCatsCount) {
-    return 'CATS';
+    return 'CAT';
   }
 
   return null;

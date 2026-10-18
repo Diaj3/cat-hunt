@@ -15,10 +15,6 @@ export default function SetupScreen({ onStartGame }: SetupScreenProps) {
     'example4',
     'example5',
     'example6',
-    'example7',
-    'example8',
-    'example9',
-    'example10',
   ]);
 
   const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {

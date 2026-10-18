@@ -4,13 +4,13 @@ import DistributionScreen from './screens/DistributionScreen';
 import NightScreen from './screens/NightScreen';
 import DayScreen from './screens/DayScreen';
 import RulesModal from './components/RulesModal';
-import type { Player } from './types/game';
+import type { GameStep } from './types/game';
 import GameOverScreen from './screens/GameOverScreen';
+import type { WinnerRole } from './types/winnerRole';
+import type { Player } from './types/player';
 
 export default function App() {
-  const [step, setStep] = useState<
-    'SETUP' | 'DISTRIBUTE' | 'NIGHT' | 'DAY' | 'GAME_OVER'
-  >('SETUP');
+  const [step, setStep] = useState<GameStep>('SETUP');
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
@@ -19,9 +19,7 @@ export default function App() {
     null,
   );
   const [dayNumber, setDayNumber] = useState<number>(1);
-  const [winner, setWinner] = useState<'MICE' | 'CATS' | 'RACCOON' | null>(
-    null,
-  );
+  const [winner, setWinner] = useState<WinnerRole | null>(null);
 
   const handleStartGame = (names: string[]) => {
     setPlayerNames(names);
@@ -42,17 +40,17 @@ export default function App() {
 
     // Check if night attack triggered a win condition before day (e.g. Cats equal Mice)
     const catsCount = updatedPlayers.filter(
-      (p) => p.isAlive && p.role === 'Cat',
+      (p) => p.isAlive && p.role === 'CAT',
     ).length;
     const nonCatsCount = updatedPlayers.filter(
-      (p) => p.isAlive && p.role !== 'Cat',
+      (p) => p.isAlive && p.role !== 'CAT',
     ).length;
 
     if (catsCount === 0) {
-      setWinner('MICE');
+      setWinner('MOUSE');
       setStep('GAME_OVER');
     } else if (catsCount >= nonCatsCount) {
-      setWinner('CATS');
+      setWinner('CAT');
       setStep('GAME_OVER');
     } else {
       setStep('DAY');
@@ -62,7 +60,7 @@ export default function App() {
   const handleDayComplete = (
     updatedPlayers: Player[],
     _votedPlayerId: number | null,
-    gameWinner: 'MICE' | 'CATS' | 'RACCOON' | null,
+    gameWinner: WinnerRole | null,
   ) => {
     setGamePlayers(updatedPlayers);
 
@@ -124,11 +122,11 @@ export default function App() {
           />
         )}
 
-        {step === 'GAME_OVER' && (
+        {step === 'GAME_OVER' && winner && (
           <GameOverScreen
-          // winner={winner}
-          // players={gamePlayers}
-          // onPlayAgain={handlePlayAgain}
+            winner={winner}
+            players={gamePlayers}
+            onPlayAgain={handlePlayAgain}
           />
         )}
       </main>

@@ -11,7 +11,6 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/90">
           <div className="flex items-center gap-2">
             <span className="text-xl">📖</span>
@@ -27,9 +26,7 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
           </button>
         </div>
 
-        {/* Modal Content - Scrollable */}
         <div className="p-6 overflow-y-auto space-y-6 text-slate-300 text-sm">
-          {/* Game Objective */}
           <section className="space-y-2">
             <h3 className="text-xs uppercase tracking-wider font-mono font-bold text-amber-500">
               Objective
@@ -47,7 +44,6 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
             </p>
           </section>
 
-          {/* Role Index */}
           <section className="space-y-3">
             <h3 className="text-xs uppercase tracking-wider font-mono font-bold text-amber-500">
               Roles & Abilities
@@ -73,7 +69,6 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
             </div>
           </section>
 
-          {/* Order of the Night */}
           <section className="space-y-2">
             <h3 className="text-xs uppercase tracking-wider font-mono font-bold text-amber-500">
               Night Sequence
@@ -107,7 +102,6 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
           </section>
         </div>
 
-        {/* Modal Footer */}
         <div className="p-4 border-t border-slate-800 bg-slate-900/90 text-center">
           <button
             onClick={onClose}
