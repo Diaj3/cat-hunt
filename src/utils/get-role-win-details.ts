@@ -13,6 +13,7 @@ import mousewin5 from '../assets/mice/win-screen/mousewin5.gif';
 
 import raccoonwin1 from '../assets/raccoons/win-screen/raccoonwin1.gif';
 import raccoonwin2 from '../assets/raccoons/win-screen/raccoonwin2.gif';
+import type { Player } from '../types/player';
 
 const catGifs = [catwin1, catwin2, catwin3, catwin4];
 const mouseGifs = [mousewin1, mousewin2, mousewin3, mousewin4, mousewin5];
@@ -42,8 +43,10 @@ const winnerDetails: Record<
   },
 };
 
-export function getWinnerRoleDetails(winner: WinnerRole) {
-  const catGif = catGifs[Math.floor(Math.random() * catGifs.length)];
+export function getWinnerRoleDetails(winner: WinnerRole, players: Player[]) {
+  const catGif = getCatGif(
+    players.filter((player) => player.role === 'CAT').length,
+  );
   const mouseGif = mouseGifs[Math.floor(Math.random() * mouseGifs.length)];
   const raccoonGif =
     raccoonGifs[Math.floor(Math.random() * raccoonGifs.length)];
@@ -53,4 +56,21 @@ export function getWinnerRoleDetails(winner: WinnerRole) {
   winnerDetails['RACCOON'].gif = raccoonGif;
 
   return winnerDetails[winner];
+}
+
+/**
+ * Return gif based on the amount of cats
+ * playing in the game
+ */
+function getCatGif(catCount: number) {
+  switch (catCount) {
+    case 1:
+      return catGifs[0];
+    case 2:
+      return catGifs[1];
+    case 3:
+      return catGifs[2];
+    default:
+      return catGifs[3];
+  }
 }

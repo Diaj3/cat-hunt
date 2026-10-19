@@ -21,7 +21,7 @@ export default function GameOverScreen({
   players,
   onPlayAgain,
 }: GameOverScreenProps) {
-  const details = getWinnerRoleDetails(winner);
+  const details = getWinnerRoleDetails(winner, players);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-950 p-6 text-slate-100">

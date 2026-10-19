@@ -60,14 +60,7 @@ export default function PhaseTransitionScreen({
           ) : (
             <div className="space-y-1">
               <p className="text-xl font-bold text-emerald-400">
-                {isDawn
-                  ? '🛡️ No one was eliminated!'
-                  : '🤝 The vote was skipped!'}
-              </p>
-              <p className="text-xs text-slate-400">
-                {isDawn
-                  ? 'The Guard Dog successfully protected the target!'
-                  : 'No player was eliminated by the village today.'}
+                🛡️ No one was eliminated!
               </p>
             </div>
           )}
