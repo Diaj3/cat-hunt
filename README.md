@@ -80,3 +80,9 @@ export default defineConfig([
 ])
 
 ```
+
+## TODOS:
+- differenciate between guard dog save vs no pick when no one is killed by cats
+- change rules header (formatting is getting ruined)
+- on start up page, the add button is "outside" of main container on mobile
+- UI/UX improvements

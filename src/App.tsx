@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SetupScreen from './screens/SetupScreen';
 import DistributionScreen from './screens/DistributionScreen';
 import NightScreen from './screens/NightScreen';
@@ -10,8 +10,13 @@ import type { WinnerRole } from './types/winnerRole';
 import type { Player } from './types/player';
 import PhaseTransitionScreen from './screens/PhaseTransictionsScreen';
 import { checkWinConditions } from './utils/check-win-conditions';
+import { preloadGameAssets } from './utils/preload-assets';
 
 export default function App() {
+  useEffect(() => {
+    preloadGameAssets();
+  }, []);
+
   const [step, setStep] = useState<GameStep>('SETUP');
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
