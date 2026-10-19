@@ -1,1 +1,2 @@
-export type GameStep = 'SETUP' | 'DISTRIBUTE' | 'NIGHT' | 'DAY' | 'GAME_OVER';
+export type GameStep =
+  'SETUP' | 'DISTRIBUTE' | 'NIGHT' | 'DAWN' | 'DAY' | 'DUSK' | 'GAME_OVER';

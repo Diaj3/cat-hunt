@@ -53,12 +53,14 @@ export default function DistributionScreen({
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl text-center space-y-6">
         {/* Progress tracker */}
-        <div className="text-xs uppercase tracking-wider text-slate-500 font-mono">
-          Player {currentIndex + 1} of {players.length}
-        </div>
+        {!isFinished && (
+          <div className="text-xs uppercase tracking-wider text-slate-500 font-mono">
+            Player {currentIndex + 1} of {players.length}
+          </div>
+        )}
         {/* FINAL HOST HANDOFF CARD */}
         {isFinished ? (
-          <div className="space-y-6 py-4">
+          <div className="space-y-6">
             <div className="text-6xl">👑</div>
 
             <div className="space-y-2">
@@ -122,12 +124,12 @@ export default function DistributionScreen({
               onClick={handleStartGame}
               className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
             >
-              Start Night Phase
+              Start
             </button>
           </div>
         ) : !isRevealed ? (
           // --- BLINDFOLD STATE ---
-          <div className="space-y-6 py-4">
+          <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-xl text-slate-300">Pass the device to</h2>
               <p className="text-3xl font-bold text-amber-500">

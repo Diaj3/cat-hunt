@@ -2,19 +2,19 @@ import { useState } from 'react';
 import OwlPhase from '../components/OwlPhase';
 import GuardDogPhase from '../components/GuardDogPhase';
 
-import morning from './../assets/others/morning.png';
 import CatPhase from '../components/CatPhase';
 import type { Player } from '../types/player';
+import PhasesHeader from '../components/PhasesHeader';
 
 interface NightScreenProps {
   players: Player[];
   onNightComplete: (
     updatedPlayers: Player[],
-    eliminatedPlayerId: number | null,
+    eliminatedPlayer: Player | null,
   ) => void;
 }
 
-type NightPhase = 'CATS' | 'GUARD_DOG' | 'OWL' | 'SUMMARY';
+type NightPhase = 'CATS' | 'GUARD_DOG' | 'OWL';
 
 export default function NightScreen({
   players,
@@ -55,7 +55,7 @@ export default function NightScreen({
   };
 
   const handleNextFromOwl = () => {
-    setPhase('SUMMARY');
+    handleStartDay();
   };
 
   // Calculate elimination result
@@ -70,24 +70,16 @@ export default function NightScreen({
         ? { ...p, isAlive: false }
         : p,
     );
-    onNightComplete(
-      updatedPlayers,
-      eliminatedPlayer ? eliminatedPlayer.id : null,
-    );
+    onNightComplete(updatedPlayers, eliminatedPlayer);
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
-        {/* HEADER BADGE */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <span className="text-xs font-mono uppercase text-amber-500 tracking-wider">
-            🌙 Night Phase
-          </span>
-          <span className="text-xs bg-slate-950 text-slate-400 px-2.5 py-1 rounded-full border border-slate-800 font-mono">
-            Step: {phase}
-          </span>
-        </div>
+        <PhasesHeader
+          phase="🌙 Night Phase"
+          additionalInfo={`Step: ${phase}`}
+        />
 
         {phase === 'CATS' && (
           <CatPhase
@@ -114,60 +106,6 @@ export default function NightScreen({
             livingPlayers={livingPlayers}
             onNext={handleNextFromOwl}
           />
-        )}
-
-        {phase === 'SUMMARY' && (
-          <div className="space-y-6 text-center">
-            <div className="flex justify-center mt-4">
-              <img
-                src={morning}
-                className="bg-slate-950 border border-slate-800 rounded-xl"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <h2 className="text-2xl font-bold text-amber-500">
-                Morning Has Broken!
-              </h2>
-              <p className="text-xs text-slate-400">
-                Host, tell everyone to wake up, then announce the night's result
-                below.
-              </p>
-            </div>
-
-            {/* MORNING REVEAL CARD */}
-            <div className="bg-slate-950 border border-slate-800 p-5 rounded-xl space-y-2 text-center">
-              <h3 className="text-xs uppercase font-mono text-slate-400">
-                Night Outcome
-              </h3>
-              {eliminatedPlayer ? (
-                <div className="space-y-1">
-                  <p className="text-xl font-bold text-red-400">
-                    💀 {eliminatedPlayer.name} was eliminated!
-                  </p>
-                  <p className="text-xs text-slate-400">
-                    They must remain silent for the rest of the game.
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-1">
-                  <p className="text-xl font-bold text-emerald-400">
-                    🛡️ No one was eliminated!
-                  </p>
-                  <p className="text-xs text-slate-400">
-                    The Guard Dog successfully protected the target!
-                  </p>
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={handleStartDay}
-              className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
-            >
-              Begin Day Discussion & Vote
-            </button>
-          </div>
         )}
       </div>
     </div>

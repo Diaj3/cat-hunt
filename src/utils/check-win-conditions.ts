@@ -10,9 +10,14 @@ import type { WinnerRole } from '../types/winnerRole';
  */
 export const checkWinConditions = (
   currentPlayers: Player[],
-  ejectedPlayer: Player | null,
+  eliminatedPlayer: Player | null,
+  isDayPhase: boolean = false,
 ): WinnerRole | null => {
-  if (ejectedPlayer && ejectedPlayer.role === 'RACCOON') {
+  if (!eliminatedPlayer) {
+    return null;
+  }
+
+  if (isDayPhase && eliminatedPlayer && eliminatedPlayer.role === 'RACCOON') {
     return 'RACCOON';
   }
 

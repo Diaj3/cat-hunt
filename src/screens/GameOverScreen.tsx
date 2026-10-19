@@ -1,3 +1,4 @@
+import PhasesHeader from '../components/PhasesHeader';
 import type { Player } from '../types/player';
 import type { WinnerRole } from '../types/winnerRole';
 import { MINI_ROLE_DESCRIPTIONS } from '../utils/get-role-description';
@@ -25,19 +26,16 @@ export default function GameOverScreen({
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-950 p-6 text-slate-100">
       <div className="w-full max-w-md space-y-6 rounded-2xl border border-slate-800 bg-slate-900 p-8 text-center shadow-xl">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-500">
-            🏁 Game Over
-          </span>
-          <span className="rounded-full border border-slate-800 bg-slate-950 px-2.5 py-1 text-xs font-mono text-slate-400">
-            Final Results
-          </span>
+        <PhasesHeader phase="🏁 Game Over" additionalInfo="Final Results" />
+
+        <div className="flex justify-center mt-4">
+          <img
+            src={details.gif}
+            className="bg-slate-950 border border-slate-800 rounded-xl"
+          />
         </div>
 
         <div className="space-y-3 py-2">
-          <div className="text-6xl" aria-hidden="true">
-            {details.icon}
-          </div>
           <div className="space-y-1">
             <h1 className={`text-3xl font-bold ${details.color}`}>
               {details.title}
@@ -73,9 +71,9 @@ export default function GameOverScreen({
                       </span>
                     )}
                     <span
-                      className={`text-xs ${player.isAlive ? 'text-emerald-400' : 'text-slate-500'}`}
+                      className={`text-xs ${player.isAlive ? 'text-emerald-400' : 'text-red-400'}`}
                     >
-                      {player.isAlive ? 'Alive' : 'Out'}
+                      {player.isAlive ? 'Alive' : 'Dead'}
                     </span>
                   </div>
                 </li>

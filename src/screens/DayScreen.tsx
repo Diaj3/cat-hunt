@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import { checkWinConditions } from '../utils/check-win-conditions';
 import { formatTime } from '../utils/format-time';
-import type { WinnerRole } from '../types/winnerRole';
 import type { Player } from '../types/player';
+import PhasesHeader from '../components/PhasesHeader';
 
 interface DayScreenProps {
   players: Player[];
   dayNumber: number;
   onDayComplete: (
     updatedPlayers: Player[],
-    votedPlayerId: number | null,
-    winner: WinnerRole | null,
+    eliminatedPlayer: Player | null,
   ) => void;
 }
 
@@ -27,18 +25,17 @@ export default function DayScreen({
   const livingPlayers = players.filter((p) => p.isAlive);
 
   const handleConfirmVote = () => {
-    let ejectedPlayer: Player | null = null;
+    let eliminatedPlayer: Player | null = null;
 
     const updatedPlayers = players.map((p) => {
       if (selectedVotedId !== null && p.id === selectedVotedId) {
-        ejectedPlayer = p;
+        eliminatedPlayer = p;
         return { ...p, isAlive: false };
       }
       return p;
     });
 
-    const winner = checkWinConditions(updatedPlayers, ejectedPlayer);
-    onDayComplete(updatedPlayers, selectedVotedId, winner);
+    onDayComplete(updatedPlayers, eliminatedPlayer);
   };
 
   // Timer effect: when time runs out, auto-confirm whatever choice is selected
@@ -58,22 +55,10 @@ export default function DayScreen({
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
-        {/* HEADER BADGE & COUNTDOWN */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <span className="text-xs font-mono uppercase text-amber-500 tracking-wider">
-            ☀️ Day {dayNumber}
-          </span>
-
-          {/* TIMER CHIP */}
-          <div className="flex items-center gap-1.5 bg-slate-950 px-3 py-1 rounded-full border border-slate-800 font-mono text-xs">
-            <span className="text-slate-500">⏳</span>
-            <span
-              className={`font-bold ${timeLeft <= 30 ? 'text-red-400 animate-pulse' : 'text-amber-400'}`}
-            >
-              {formatTime(timeLeft)}
-            </span>
-          </div>
-        </div>
+        <PhasesHeader
+          phase={`☀️ Day ${dayNumber}`}
+          additionalInfo="Discussion ⏳"
+        />
 
         <div className="space-y-6">
           <div className="space-y-1 text-center">
@@ -87,7 +72,9 @@ export default function DayScreen({
           </div>
 
           <div className="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-2">
-            <div className="text-5xl font-mono font-bold text-amber-400 tracking-wider">
+            <div
+              className={`text-5xl font-mono font-bold tracking-wider ${timeLeft <= 30 ? 'text-red-400 animate-pulse' : 'text-amber-400'}`}
+            >
               {formatTime(timeLeft)}
             </div>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">

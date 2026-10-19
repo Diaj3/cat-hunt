@@ -2,20 +2,16 @@ import { useState, type SubmitEvent } from 'react';
 import { hasEnoughPlayers } from '../utils/has-enough-players';
 
 interface SetupScreenProps {
+  previousGamePlayers?: string[];
   onStartGame: (players: string[]) => void;
 }
 
-export default function SetupScreen({ onStartGame }: SetupScreenProps) {
+export default function SetupScreen({
+  onStartGame,
+  previousGamePlayers,
+}: SetupScreenProps) {
   const [currentName, setCurrentName] = useState<string>('');
-  const [players, setPlayers] = useState<string[]>([
-    // Temp data for testing
-    'example1',
-    'example2',
-    'example3',
-    'example4',
-    'example5',
-    'example6',
-  ]);
+  const [players, setPlayers] = useState<string[]>(previousGamePlayers ?? []);
 
   const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

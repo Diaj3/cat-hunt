@@ -8,6 +8,8 @@ import type { GameStep } from './types/game';
 import GameOverScreen from './screens/GameOverScreen';
 import type { WinnerRole } from './types/winnerRole';
 import type { Player } from './types/player';
+import PhaseTransitionScreen from './screens/PhaseTransictionsScreen';
+import { checkWinConditions } from './utils/check-win-conditions';
 
 export default function App() {
   const [step, setStep] = useState<GameStep>('SETUP');
@@ -15,9 +17,6 @@ export default function App() {
   const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
 
-  const [eliminatedTonightId, setEliminatedTonightId] = useState<number | null>(
-    null,
-  );
   const [dayNumber, setDayNumber] = useState<number>(1);
   const [winner, setWinner] = useState<WinnerRole | null>(null);
 
@@ -31,51 +30,49 @@ export default function App() {
     setStep('NIGHT');
   };
 
+  const handlePhaseTransictionComplete = () => {
+    if (step === 'DAWN') {
+      setStep('DAY');
+    } else if (step === 'DUSK') {
+      setStep('NIGHT');
+    }
+  };
+
   const handleNightComplete = (
     updatedPlayers: Player[],
-    eliminatedId: number | null,
+    eliminatedPlayer: Player | null,
   ) => {
     setGamePlayers(updatedPlayers);
-    setEliminatedTonightId(eliminatedId);
 
-    // Check if night attack triggered a win condition before day (e.g. Cats equal Mice)
-    const catsCount = updatedPlayers.filter(
-      (p) => p.isAlive && p.role === 'CAT',
-    ).length;
-    const nonCatsCount = updatedPlayers.filter(
-      (p) => p.isAlive && p.role !== 'CAT',
-    ).length;
+    const winner = checkWinConditions(updatedPlayers, eliminatedPlayer, false);
 
-    if (catsCount === 0) {
-      setWinner('MOUSE');
-      setStep('GAME_OVER');
-    } else if (catsCount >= nonCatsCount) {
-      setWinner('CAT');
+    if (winner) {
+      setWinner(winner);
       setStep('GAME_OVER');
     } else {
-      setStep('DAY');
+      setStep('DAWN');
     }
   };
 
   const handleDayComplete = (
     updatedPlayers: Player[],
-    _votedPlayerId: number | null,
-    gameWinner: WinnerRole | null,
+    eliminatedPlayer: Player | null,
   ) => {
     setGamePlayers(updatedPlayers);
 
-    if (gameWinner) {
-      setWinner(gameWinner);
+    const winner = checkWinConditions(updatedPlayers, eliminatedPlayer, true);
+
+    if (winner) {
+      setWinner(winner);
       setStep('GAME_OVER');
     } else {
       setDayNumber((prev) => prev + 1);
-      setStep('NIGHT');
+      setStep('DUSK');
     }
   };
 
   const handlePlayAgain = () => {
-    setGamePlayers([]);
-    setEliminatedTonightId(null);
+    setGamePlayers([]); // !TODO: change this to reset to initial state instead of empty array
     setDayNumber(1);
     setWinner(null);
     setStep('SETUP');
@@ -98,7 +95,12 @@ export default function App() {
       <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />
 
       <main>
-        {step === 'SETUP' && <SetupScreen onStartGame={handleStartGame} />}
+        {step === 'SETUP' && (
+          <SetupScreen
+            previousGamePlayers={playerNames}
+            onStartGame={handleStartGame}
+          />
+        )}
 
         {step === 'DISTRIBUTE' && (
           <DistributionScreen
@@ -111,6 +113,14 @@ export default function App() {
           <NightScreen
             players={gamePlayers}
             onNightComplete={handleNightComplete}
+          />
+        )}
+
+        {(step === 'DAWN' || step === 'DUSK') && (
+          <PhaseTransitionScreen
+            type={step}
+            eliminatedPlayer={null}
+            onPhaseTransitionComplete={handlePhaseTransictionComplete}
           />
         )}
 
