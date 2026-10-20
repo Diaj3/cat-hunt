@@ -87,9 +87,9 @@ export default function OwlPhase({
       <button
         onClick={onNext}
         disabled={isOwlAlive && owlTargetId === null}
-        className={`w-full font-bold py-3.5 rounded-xl transition-colors ${
+        className={`w-full font-bold py-3.5 rounded-xl ${
           !isOwlAlive || owlTargetId !== null
-            ? 'bg-amber-600 hover:bg-amber-500 text-slate-950 cursor-pointer shadow-lg'
+            ? 'bg-amber-600 text-slate-950 cursor-pointer'
             : 'bg-slate-800 text-slate-500 cursor-not-allowed'
         }`}
       >

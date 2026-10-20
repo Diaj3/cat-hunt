@@ -117,7 +117,7 @@ export default function DayScreen({
           <button
             type="button"
             onClick={handleConfirmVote}
-            className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
+            className="w-full bg-amber-600 text-slate-950 font-bold py-3.5 rounded-xl cursor-pointer"
           >
             {selectedVotedId === null
               ? 'Confirm Skip & End Day'

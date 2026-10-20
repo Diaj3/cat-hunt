@@ -1,4 +1,5 @@
 import { useState, type SubmitEvent } from 'react';
+import catHuntLogo from '../assets/logo/cat-hunt-logo.png';
 import { hasEnoughPlayers } from '../utils/has-enough-players';
 
 interface SetupScreenProps {
@@ -42,10 +43,10 @@ export default function SetupScreen({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
-      <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
+      <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-center text-amber-500 mb-2">
-            Cat Hunt
+          <h1 className="mb-2">
+            <img src={catHuntLogo} alt="Cat Hunt" className="mx-auto w-64" />
           </h1>
           <p className="text-slate-400 text-center text-sm">
             Add your players to the roster
@@ -63,7 +64,7 @@ export default function SetupScreen({
           />
           <button
             type="submit"
-            className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-semibold px-5 rounded-xl transition-colors cursor-pointer"
+            className="shrink-0 bg-amber-600 text-slate-950 font-semibold px-4 sm:px-5 rounded-xl cursor-pointer"
           >
             Add
           </button>
@@ -104,9 +105,9 @@ export default function SetupScreen({
           type="button"
           onClick={handleStartClick}
           disabled={!hasEnoughPlayers(players.length)}
-          className={`w-full font-semibold py-3 rounded-xl transition-colors ${
+          className={`w-full font-semibold py-3 rounded-xl ${
             hasEnoughPlayers(players.length)
-              ? 'bg-amber-600 hover:bg-amber-500 text-slate-950 cursor-pointer'
+              ? 'bg-amber-600 text-slate-950 cursor-pointer'
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'
           }`}
         >

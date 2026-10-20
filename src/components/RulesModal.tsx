@@ -105,7 +105,7 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
         <div className="p-4 border-t border-slate-800 bg-slate-900/90 text-center">
           <button
             onClick={onClose}
-            className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-colors cursor-pointer"
+            className="w-full bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl cursor-pointer"
           >
             Got it, back to the game!
           </button>

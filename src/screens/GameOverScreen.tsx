@@ -85,7 +85,7 @@ export default function GameOverScreen({
         <button
           type="button"
           onClick={onPlayAgain}
-          className="w-full cursor-pointer rounded-xl bg-amber-600 py-3.5 font-bold text-slate-950 shadow-lg transition-colors hover:bg-amber-500"
+          className="w-full cursor-pointer rounded-xl bg-amber-600 py-3.5 font-bold text-slate-950"
         >
           Play Again
         </button>

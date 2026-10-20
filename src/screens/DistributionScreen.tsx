@@ -122,7 +122,7 @@ export default function DistributionScreen({
             {/* START BUTTON */}
             <button
               onClick={handleStartGame}
-              className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
+              className="w-full bg-amber-600 text-slate-950 font-bold py-3.5 rounded-xl cursor-pointer"
             >
               Start
             </button>
@@ -143,7 +143,7 @@ export default function DistributionScreen({
 
             <button
               onClick={() => setIsRevealed(true)}
-              className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-semibold py-3 rounded-xl transition-colors cursor-pointer"
+              className="w-full bg-amber-600 text-slate-950 font-semibold py-3 rounded-xl cursor-pointer"
             >
               Reveal My Role
             </button>

@@ -66,9 +66,9 @@ export default function GuardDogPhase({
       <button
         onClick={onNext}
         disabled={isGuardDogAlive && guardedTargetId === null}
-        className={`w-full font-bold py-3.5 rounded-xl transition-colors ${
+        className={`w-full font-bold py-3.5 rounded-xl ${
           !isGuardDogAlive || guardedTargetId !== null
-            ? 'bg-amber-600 hover:bg-amber-500 text-slate-950 cursor-pointer shadow-lg'
+            ? 'bg-amber-600 text-slate-950 cursor-pointer'
             : 'bg-slate-800 text-slate-500 cursor-not-allowed'
         }`}
       >

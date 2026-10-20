@@ -69,7 +69,7 @@ export default function PhaseTransitionScreen({
         <button
           type="button"
           onClick={onPhaseTransitionComplete}
-          className="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-3.5 rounded-xl transition-colors cursor-pointer shadow-lg"
+          className="w-full bg-amber-600 text-slate-950 font-bold py-3.5 rounded-xl cursor-pointer"
         >
           {isDawn ? 'Begin Day Discussion' : 'Start Night Phase'}
         </button>
