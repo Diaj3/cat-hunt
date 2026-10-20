@@ -28,7 +28,7 @@ export default function PhaseTransitionScreen({
         <div className="flex justify-center mt-4">
           <img
             src={isDawn ? dawn : dusk}
-            className="bg-slate-950 border border-slate-800 rounded-xl"
+            className="image-glow bg-slate-950 border border-slate-800 rounded-xl"
           />
         </div>
 

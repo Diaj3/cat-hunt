@@ -47,7 +47,7 @@ export default function GuardDogPhase({
                 onClick={() => onSetGuardedTargetId(player.id)}
                 className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   guardedTargetId === player.id
-                    ? 'bg-amber-600/20 border-amber-500 text-amber-300'
+                    ? 'bg-amber-600/20 border-amber-500 text-slate-950'
                     : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'
                 }`}
               >
@@ -72,7 +72,7 @@ export default function GuardDogPhase({
             : 'bg-slate-800 text-slate-500 cursor-not-allowed'
         }`}
       >
-        Confirm & Next
+        Confirm
       </button>
     </div>
   );

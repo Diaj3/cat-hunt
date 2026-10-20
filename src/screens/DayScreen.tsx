@@ -89,7 +89,7 @@ export default function DayScreen({
               onClick={() => setSelectedVotedId(null)}
               className={`w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                 selectedVotedId === null
-                  ? 'bg-amber-600/20 border-amber-500 text-amber-300'
+                  ? 'bg-amber-600/20 border-amber-500 text-slate-950'
                   : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
               }`}
             >
@@ -104,7 +104,7 @@ export default function DayScreen({
                 onClick={() => setSelectedVotedId(player.id)}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer ${
                   selectedVotedId === player.id
-                    ? 'bg-amber-600/20 border-amber-500 text-amber-300'
+                    ? 'bg-amber-600/20 border-amber-500 text-slate-950'
                     : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'
                 }`}
               >
@@ -119,9 +119,7 @@ export default function DayScreen({
             onClick={handleConfirmVote}
             className="w-full bg-amber-600 text-slate-950 font-bold py-3.5 rounded-xl cursor-pointer"
           >
-            {selectedVotedId === null
-              ? 'Confirm Skip & End Day'
-              : 'Eliminate Player & Check Game Over'}
+            Confirm
           </button>
         </div>
       </div>

@@ -16,7 +16,17 @@
   --color-amber-300: #ffd18a;
 }
 
+@layer base {
+  button {
+    font-family: 'Righteous', sans-serif;
+  }
+}
+
 @layer utilities {
+  .image-glow {
+    filter: drop-shadow(0 0 16px rgb(244 163 64 / 65%));
+  }
+
   .min-h-screen.bg-slate-950 {
     background-image:
       radial-gradient(ellipse at 50% -20%, rgb(174 98 26 / 13%), transparent 65%),

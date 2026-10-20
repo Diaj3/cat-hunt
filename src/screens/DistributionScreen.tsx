@@ -61,8 +61,6 @@ export default function DistributionScreen({
         {/* FINAL HOST HANDOFF CARD */}
         {isFinished ? (
           <div className="space-y-6">
-            <div className="text-6xl">👑</div>
-
             <div className="space-y-2">
               <h2 className="text-2xl font-bold text-amber-500">
                 All Roles Assigned!
@@ -145,7 +143,7 @@ export default function DistributionScreen({
               onClick={() => setIsRevealed(true)}
               className="w-full bg-amber-600 text-slate-950 font-semibold py-3 rounded-xl cursor-pointer"
             >
-              Reveal My Role
+              Reveal my role
             </button>
           </div>
         ) : (
@@ -162,7 +160,7 @@ export default function DistributionScreen({
                 <img
                   src={getRoleAvatar(currentPlayer.role)}
                   alt={currentPlayer.role}
-                  className="bg-slate-950 border border-slate-800 rounded-xl"
+                  className="image-glow bg-slate-950 border border-slate-800 rounded-xl"
                 />
               </div>
             </div>
@@ -175,7 +173,7 @@ export default function DistributionScreen({
               onClick={handleNext}
               className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl transition-colors cursor-pointer border border-slate-700"
             >
-              Hide & Pass Device
+              Hide and Pass Device
             </button>
           </div>
         )}

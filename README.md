@@ -4,6 +4,5 @@ Cat Hunt web app
 ## TODOS:
 - Create a screen wrapper with outter component
 - Fix logo issues
-- Add browser logo
 - Add a second setup screen for number of cats, dogs ,owls, raccoons, etc 
 - UI/UX improvements

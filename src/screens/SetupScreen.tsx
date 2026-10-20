@@ -1,5 +1,5 @@
 import { useState, type SubmitEvent } from 'react';
-import catHuntLogo from '../assets/logo/cat-hunt-logo.png';
+import logo from '../assets/logo/logo.png';
 import { hasEnoughPlayers } from '../utils/has-enough-players';
 
 interface SetupScreenProps {
@@ -46,7 +46,7 @@ export default function SetupScreen({
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
         <div>
           <h1 className="mb-2">
-            <img src={catHuntLogo} alt="Cat Hunt" className="mx-auto w-64" />
+            <img src={logo} alt="Cat Hunt" className="mx-auto w-64" />
           </h1>
           <p className="text-slate-400 text-center text-sm">
             Add your players to the roster

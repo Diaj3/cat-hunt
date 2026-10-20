@@ -31,11 +31,11 @@ export default function GameOverScreen({
         <div className="flex justify-center mt-4">
           <img
             src={details.gif}
-            className="bg-slate-950 border border-slate-800 rounded-xl"
+            className="image-glow bg-slate-950 border border-slate-800 rounded-xl"
           />
         </div>
 
-        <div className="space-y-3 py-2">
+        <div className="space-y-3">
           <div className="space-y-1">
             <h1 className={`text-3xl font-bold ${details.color}`}>
               {details.title}
