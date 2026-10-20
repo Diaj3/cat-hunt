@@ -48,6 +48,8 @@ import host4 from './../assets/hosts/host4.png';
 import dawn from './../assets/others/dawn.png';
 import dusk from './../assets/others/dusk.png';
 
+import logo from './../assets/logo/logo.png';
+
 const GAME_ASSETS = [
   cat1,
   cat2,
@@ -89,6 +91,7 @@ const GAME_ASSETS = [
   host4,
   dawn,
   dusk,
+  logo,
 ];
 
 /**

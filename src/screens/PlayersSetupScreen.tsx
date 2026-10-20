@@ -2,15 +2,15 @@ import { useState, type SubmitEvent } from 'react';
 import logo from '../assets/logo/logo.png';
 import { hasEnoughPlayers } from '../utils/has-enough-players';
 
-interface SetupScreenProps {
+interface PlayersSetupScreenProps {
   previousGamePlayers?: string[];
-  onStartGame: (players: string[]) => void;
+  onPlayerSetupComplete: (players: string[]) => void;
 }
 
-export default function SetupScreen({
-  onStartGame,
+export default function PlayersSetupScreen({
+  onPlayerSetupComplete,
   previousGamePlayers,
-}: SetupScreenProps) {
+}: PlayersSetupScreenProps) {
   const [currentName, setCurrentName] = useState<string>('');
   const [players, setPlayers] = useState<string[]>(previousGamePlayers ?? []);
 
@@ -33,12 +33,12 @@ export default function SetupScreen({
     setPlayers(players.filter((_, index) => index !== indexToRemove));
   };
 
-  const handleStartClick = () => {
+  const handlePlayerSetupClick = () => {
     if (!hasEnoughPlayers(players.length)) {
       alert('You need at least 6 players for Cat Hunt!');
       return;
     }
-    onStartGame(players);
+    onPlayerSetupComplete(players);
   };
 
   return (
@@ -103,7 +103,7 @@ export default function SetupScreen({
         {/* Start Game Button */}
         <button
           type="button"
-          onClick={handleStartClick}
+          onClick={handlePlayerSetupClick}
           disabled={!hasEnoughPlayers(players.length)}
           className={`w-full font-semibold py-3 rounded-xl ${
             hasEnoughPlayers(players.length)

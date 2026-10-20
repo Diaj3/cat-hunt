@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import SetupScreen from './screens/SetupScreen';
+import PlayersSetupScreen from './screens/PlayersSetupScreen';
 import DistributionScreen from './screens/DistributionScreen';
 import NightScreen from './screens/NightScreen';
 import DayScreen from './screens/DayScreen';
@@ -11,13 +11,14 @@ import type { Player } from './types/player';
 import PhaseTransitionScreen from './screens/PhaseTransictionsScreen';
 import { checkWinConditions } from './utils/check-win-conditions';
 import { preloadGameAssets } from './utils/preload-assets';
+import GameSetupScreen from './screens/GameSetupScreen';
 
 export default function App() {
   useEffect(() => {
     preloadGameAssets();
   }, []);
 
-  const [step, setStep] = useState<GameStep>('SETUP');
+  const [step, setStep] = useState<GameStep>('PLAYERS_SETUP');
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
@@ -25,8 +26,12 @@ export default function App() {
   const [dayNumber, setDayNumber] = useState<number>(1);
   const [winner, setWinner] = useState<WinnerRole | null>(null);
 
-  const handleStartGame = (names: string[]) => {
+  const handlePlayerSetup = (names: string[]) => {
     setPlayerNames(names);
+    setStep('GAME_SETUP');
+  };
+
+  const handleGameSetup = () => {
     setStep('DISTRIBUTE');
   };
 
@@ -80,7 +85,7 @@ export default function App() {
     setGamePlayers([]); // !TODO: change this to reset to initial state instead of empty array
     setDayNumber(1);
     setWinner(null);
-    setStep('SETUP');
+    setStep('PLAYERS_SETUP');
   };
 
   return (
@@ -100,11 +105,15 @@ export default function App() {
       <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />
 
       <main>
-        {step === 'SETUP' && (
-          <SetupScreen
+        {step === 'PLAYERS_SETUP' && (
+          <PlayersSetupScreen
             previousGamePlayers={playerNames}
-            onStartGame={handleStartGame}
+            onPlayerSetupComplete={handlePlayerSetup}
           />
+        )}
+
+        {step === 'GAME_SETUP' && (
+          <GameSetupScreen onGameSetupComplete={handleGameSetup} />
         )}
 
         {step === 'DISTRIBUTE' && (

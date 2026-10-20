@@ -32,7 +32,7 @@ export default function PhaseTransitionScreen({
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-center">
           <h2 className="text-2xl font-bold text-amber-500">
             {isDawn ? 'Morning Has Broken!' : 'Night has fallen'}
           </h2>
