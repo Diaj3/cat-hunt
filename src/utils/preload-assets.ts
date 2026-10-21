@@ -1,3 +1,5 @@
+import logo from './../assets/logo/logo.png';
+
 import cat1 from './../assets/cats/avatars/cat1.png';
 import cat2 from './../assets/cats/avatars/cat2.png';
 import cat3 from './../assets/cats/avatars/cat3.png';
@@ -48,9 +50,8 @@ import host4 from './../assets/hosts/host4.png';
 import dawn from './../assets/others/dawn.png';
 import dusk from './../assets/others/dusk.png';
 
-import logo from './../assets/logo/logo.png';
-
 const GAME_ASSETS = [
+  logo,
   cat1,
   cat2,
   cat3,
@@ -91,7 +92,6 @@ const GAME_ASSETS = [
   host4,
   dawn,
   dusk,
-  logo,
 ];
 
 /**
