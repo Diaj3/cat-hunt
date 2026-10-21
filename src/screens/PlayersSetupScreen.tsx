@@ -12,7 +12,16 @@ export default function PlayersSetupScreen({
   previousGamePlayers,
 }: PlayersSetupScreenProps) {
   const [currentName, setCurrentName] = useState<string>('');
-  const [players, setPlayers] = useState<string[]>(previousGamePlayers ?? []);
+  const [players, setPlayers] = useState<string[]>(
+    previousGamePlayers || [
+      'example1',
+      'example2',
+      'example3',
+      'example4',
+      'example5',
+      'example6',
+    ],
+  );
 
   const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +54,7 @@ export default function PlayersSetupScreen({
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
         <div>
-          <h1 className="mb-2">
+          <h1 className="mb-2 image-glow">
             <img src={logo} alt="Cat Hunt" className="mx-auto w-64" />
           </h1>
           <p className="text-slate-400 text-center text-sm">
@@ -64,7 +73,7 @@ export default function PlayersSetupScreen({
           />
           <button
             type="submit"
-            className="shrink-0 bg-amber-600 text-slate-950 font-semibold px-4 sm:px-5 rounded-xl cursor-pointer"
+            className="shrink-0 bg-amber-600 text-slate-950 font-normal px-4 sm:px-5 rounded-xl cursor-pointer"
           >
             Add
           </button>
@@ -105,7 +114,7 @@ export default function PlayersSetupScreen({
           type="button"
           onClick={handlePlayerSetupClick}
           disabled={!hasEnoughPlayers(players.length)}
-          className={`w-full font-semibold py-3 rounded-xl ${
+          className={`w-full font-normal py-3 rounded-xl ${
             hasEnoughPlayers(players.length)
               ? 'bg-amber-600 text-slate-950 cursor-pointer'
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'

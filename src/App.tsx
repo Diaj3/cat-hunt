@@ -8,6 +8,7 @@ import type { GameStep } from './types/game';
 import GameOverScreen from './screens/GameOverScreen';
 import type { WinnerRole } from './types/winnerRole';
 import type { Player } from './types/player';
+import type { RoleCounts } from './types/role';
 import PhaseTransitionScreen from './screens/PhaseTransictionsScreen';
 import { checkWinConditions } from './utils/check-win-conditions';
 import { preloadGameAssets } from './utils/preload-assets';
@@ -21,6 +22,14 @@ export default function App() {
   const [step, setStep] = useState<GameStep>('PLAYERS_SETUP');
   const [playerNames, setPlayerNames] = useState<string[]>([]);
   const [gamePlayers, setGamePlayers] = useState<Player[]>([]);
+  const [roleCounts, setRoleCounts] = useState<RoleCounts>({
+    CAT: 0,
+    MOUSE: 0,
+    OWL: 0,
+    'GUARD DOG': 0,
+    RACCOON: 0,
+    HOST: 1,
+  });
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
 
   const [dayNumber, setDayNumber] = useState<number>(1);
@@ -31,7 +40,8 @@ export default function App() {
     setStep('GAME_SETUP');
   };
 
-  const handleGameSetup = () => {
+  const handleGameSetup = (selectedRoleCounts: RoleCounts) => {
+    setRoleCounts(selectedRoleCounts);
     setStep('DISTRIBUTE');
   };
 
@@ -95,7 +105,7 @@ export default function App() {
         <button
           type="button"
           onClick={() => setIsRulesOpen(true)}
-          className="flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 px-3.5 py-2 rounded-xl text-xs font-semibold backdrop-blur transition-colors cursor-pointer shadow-md"
+          className="flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 px-3.5 py-2 rounded-xl text-xs font-normal backdrop-blur transition-colors cursor-pointer shadow-md"
         >
           <span>📖</span>
           <span>Rules</span>
@@ -113,12 +123,17 @@ export default function App() {
         )}
 
         {step === 'GAME_SETUP' && (
-          <GameSetupScreen onGameSetupComplete={handleGameSetup} />
+          <GameSetupScreen
+            playerNames={playerNames}
+            onGameSetupComplete={handleGameSetup}
+            onOpenRules={() => setIsRulesOpen(true)}
+          />
         )}
 
         {step === 'DISTRIBUTE' && (
           <DistributionScreen
             playerNames={playerNames}
+            roleCounts={roleCounts}
             onDistributionComplete={handleDistributionComplete}
           />
         )}

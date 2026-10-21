@@ -20,7 +20,7 @@ export default function RulesModal({ isOpen, onClose }: RulesModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-100 text-sm font-semibold px-2 py-1 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
+            className="text-slate-400 hover:text-slate-100 text-sm font-normal px-2 py-1 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
           >
             ✕ Close
           </button>

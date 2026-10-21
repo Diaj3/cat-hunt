@@ -8,19 +8,22 @@ import {
 import { getRoleAvatar } from '../utils/get-role-avatar';
 import type { Player } from '../types/player';
 import type { Role } from '../types/role';
+import type { RoleCounts } from '../types/role';
 
 interface DistributionScreenProps {
   playerNames: string[];
+  roleCounts: RoleCounts;
   onDistributionComplete: (assignedPlayers: Player[]) => void;
 }
 
 export default function DistributionScreen({
   playerNames,
+  roleCounts,
   onDistributionComplete,
 }: DistributionScreenProps) {
   // Initialize players and assign random roles when this screen loads
   const [players] = useState<Player[]>(() => {
-    const assignedRoles = assignRandomRoles(playerNames.length);
+    const assignedRoles = assignRandomRoles(roleCounts);
     return playerNames.map((name, index) => ({
       id: index,
       name,
@@ -141,7 +144,7 @@ export default function DistributionScreen({
 
             <button
               onClick={() => setIsRevealed(true)}
-              className="w-full bg-amber-600 text-slate-950 font-semibold py-3 rounded-xl cursor-pointer"
+              className="w-full bg-amber-600 text-slate-950 font-normal py-3 rounded-xl cursor-pointer"
             >
               Reveal my role
             </button>
@@ -171,7 +174,7 @@ export default function DistributionScreen({
 
             <button
               onClick={handleNext}
-              className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl transition-colors cursor-pointer border border-slate-700"
+              className="w-full bg-slate-800 hover:bg-slate-700 text-white font-normal py-3 rounded-xl transition-colors cursor-pointer border border-slate-700"
             >
               Hide and Pass Device
             </button>

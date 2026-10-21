@@ -24,7 +24,7 @@
 
 @layer utilities {
   .image-glow {
-    filter: drop-shadow(0 0 16px rgb(244 163 64 / 65%));
+    filter: drop-shadow(0 0 16px rgba(241, 159, 58, 0.65));
   }
 
   .min-h-screen.bg-slate-950 {

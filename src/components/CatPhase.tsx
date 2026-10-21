@@ -19,7 +19,7 @@ export default function CatPhase({
         <span className="text-xs font-mono text-amber-500 uppercase tracking-wider">
           Host Read Aloud
         </span>
-        <p className="text-sm font-semibold text-slate-200 leading-relaxed">
+        <p className="text-sm font-normal text-slate-200 leading-relaxed">
           "Everyone, close your eyes... Cats, wake up, look at each other, and
           point to the player you want to eliminate."
         </p>
