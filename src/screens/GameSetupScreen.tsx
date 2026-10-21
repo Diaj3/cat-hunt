@@ -32,8 +32,7 @@ export default function GameSetupScreen({
   );
   const remainingCount = playerNames.length - assignedCount;
   const catsDoNotOutnumberMice = roleCounts.CAT <= roleCounts.MOUSE;
-  const canDealRoles =
-    remainingCount === 0 && catsDoNotOutnumberMice;
+  const canDealRoles = remainingCount === 0 && catsDoNotOutnumberMice;
 
   const updateRoleCount = (role: Role, change: number) => {
     setRoleCounts((currentCounts) => {
@@ -83,14 +82,14 @@ export default function GameSetupScreen({
               onClick={() =>
                 setRoleCounts(getDefaultRoleCounts(playerNames.length))
               }
-              className="flex-1 rounded-xl border border-slate-700 bg-slate-950 py-3 font-normal text-slate-200 hover:border-amber-500 hover:text-amber-400"
+              className="flex-1 rounded-xl border border-slate-700 bg-slate-950 py-3 text-slate-200 hover:border-amber-500 hover:text-amber-400"
             >
               Use suggested roles
             </button>
             <button
               type="button"
               onClick={onOpenRules}
-              className="flex-1 rounded-xl border border-slate-700 bg-slate-950 py-3 font-normal text-slate-200 hover:border-amber-500 hover:text-amber-400"
+              className="flex-1 rounded-xl border border-slate-700 bg-slate-950 py-3 text-slate-200 hover:border-amber-500 hover:text-amber-400"
             >
               📖 Rules
             </button>
@@ -189,7 +188,7 @@ export default function GameSetupScreen({
           type="button"
           onClick={handleStartGame}
           disabled={!canDealRoles}
-          className={`w-full rounded-xl py-3 font-normal ${
+          className={`w-full rounded-xl py-3 ${
             canDealRoles
               ? 'cursor-pointer bg-amber-600 text-slate-950'
               : 'cursor-not-allowed bg-slate-800 text-slate-500'

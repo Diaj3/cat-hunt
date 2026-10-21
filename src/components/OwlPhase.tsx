@@ -37,7 +37,7 @@ export default function OwlPhase({
         <span className="text-xs font-mono text-amber-500 uppercase tracking-wider">
           Host Read Aloud
         </span>
-        <p className="text-sm font-normal text-slate-200 leading-relaxed">
+        <p className="text-sm text-slate-200 leading-relaxed">
           "Guard Dog, close your eyes... Owl, wake up and point to a player
           whose identity you want to inspect."
         </p>

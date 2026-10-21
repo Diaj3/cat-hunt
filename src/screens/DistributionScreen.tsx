@@ -144,7 +144,7 @@ export default function DistributionScreen({
 
             <button
               onClick={() => setIsRevealed(true)}
-              className="w-full bg-amber-600 text-slate-950 font-normal py-3 rounded-xl cursor-pointer"
+              className="w-full bg-amber-600 text-slate-950 py-3 rounded-xl cursor-pointer"
             >
               Reveal my role
             </button>
@@ -174,7 +174,7 @@ export default function DistributionScreen({
 
             <button
               onClick={handleNext}
-              className="w-full bg-slate-800 hover:bg-slate-700 text-white font-normal py-3 rounded-xl transition-colors cursor-pointer border border-slate-700"
+              className="w-full bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl transition-colors cursor-pointer border border-slate-700"
             >
               Hide and Pass Device
             </button>

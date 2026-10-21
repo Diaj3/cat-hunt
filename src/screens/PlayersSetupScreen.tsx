@@ -73,7 +73,7 @@ export default function PlayersSetupScreen({
           />
           <button
             type="submit"
-            className="shrink-0 bg-amber-600 text-slate-950 font-normal px-4 sm:px-5 rounded-xl cursor-pointer"
+            className="shrink-0 bg-amber-600 text-slate-950 px-4 sm:px-5 rounded-xl cursor-pointer"
           >
             Add
           </button>
@@ -114,7 +114,7 @@ export default function PlayersSetupScreen({
           type="button"
           onClick={handlePlayerSetupClick}
           disabled={!hasEnoughPlayers(players.length)}
-          className={`w-full font-normal py-3 rounded-xl ${
+          className={`w-full py-3 rounded-xl ${
             hasEnoughPlayers(players.length)
               ? 'bg-amber-600 text-slate-950 cursor-pointer'
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'

@@ -20,8 +20,6 @@ export default function NightScreen({
   players,
   onNightComplete,
 }: NightScreenProps) {
-  const [phase, setPhase] = useState<NightPhase>('CATS');
-
   // Targets selected by roles
   const [catTargetId, setCatTargetId] = useState<number | null>(null);
   const [guardTargetId, setGuardTargetId] = useState<number | null>(null);
@@ -29,6 +27,10 @@ export default function NightScreen({
   // In-game role checks
   const isGuardDogInGame = players.some((p) => p.role === 'GUARD DOG');
   const isOwlInGame = players.some((p) => p.role === 'OWL');
+
+  const [phase, setPhase] = useState<NightPhase>(
+    isGuardDogInGame ? 'GUARD_DOG' : isOwlInGame ? 'OWL' : 'CATS',
+  );
 
   // Alive role checks
   const livingPlayers = players.filter((p) => p.isAlive);
@@ -39,11 +41,7 @@ export default function NightScreen({
 
   // Phase Handlers
   const handleNextFromCats = () => {
-    if (isGuardDogInGame) {
-      setPhase('GUARD_DOG');
-    } else {
-      handleNextFromGuardDog();
-    }
+    handleStartDay();
   };
 
   const handleNextFromGuardDog = () => {
@@ -55,7 +53,7 @@ export default function NightScreen({
   };
 
   const handleNextFromOwl = () => {
-    handleStartDay();
+    setPhase('CATS');
   };
 
   // Calculate elimination result
@@ -81,15 +79,6 @@ export default function NightScreen({
           additionalInfo={`Step: ${phase}`}
         />
 
-        {phase === 'CATS' && (
-          <CatPhase
-            livingPlayers={livingPlayers}
-            catTargetId={catTargetId}
-            setCatTargetId={setCatTargetId}
-            onNext={handleNextFromCats}
-          />
-        )}
-
         {phase === 'GUARD_DOG' && (
           <GuardDogPhase
             isGuardDogAlive={isGuardDogAlive}
@@ -105,6 +94,15 @@ export default function NightScreen({
             isOwlAlive={isOwlAlive}
             livingPlayers={livingPlayers}
             onNext={handleNextFromOwl}
+          />
+        )}
+
+        {phase === 'CATS' && (
+          <CatPhase
+            livingPlayers={livingPlayers}
+            catTargetId={catTargetId}
+            setCatTargetId={setCatTargetId}
+            onNext={handleNextFromCats}
           />
         )}
       </div>

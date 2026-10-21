@@ -105,7 +105,7 @@ export default function App() {
         <button
           type="button"
           onClick={() => setIsRulesOpen(true)}
-          className="flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 px-3.5 py-2 rounded-xl text-xs font-normal backdrop-blur transition-colors cursor-pointer shadow-md"
+          className="flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 px-3.5 py-2 rounded-xl text-xs backdrop-blur transition-colors cursor-pointer shadow-md"
         >
           <span>📖</span>
           <span>Rules</span>
