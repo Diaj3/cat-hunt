@@ -19,7 +19,7 @@
     <tr>
       <td align="center">
         <img src="/src/assets/readme/flow_gif.gif" alt="Cat Hunt Gameplay Reel" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" /><br />
-        <sub><em>Core gameplay flow & pass-the-phone loop</em></sub>
+        <sub><em>Core gameplay highlights</em></sub>
       </td>
     </tr>
   </table>
