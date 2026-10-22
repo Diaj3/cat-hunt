@@ -15,8 +15,14 @@
 ## 📱 Visual Showcase & Product Experience
 
 <div align="center">
-  <img src="/src/assets/readme/flow_gif.gif" alt="Cat Hunt Gameplay Reel" width="100%" style="max-width: 500px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
-  <p><em>Midnight Noir & Neon Amber dark-mode interface in action</em></p>
+  <table width="33%">
+    <tr>
+      <td align="center">
+        <img src="/src/assets/readme/flow_gif.gif" alt="Cat Hunt Gameplay Reel" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" /><br />
+        <sub><em>Core gameplay flow & pass-the-phone loop</em></sub>
+      </td>
+    </tr>
+  </table>
 
   <br />
 
