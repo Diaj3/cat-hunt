@@ -31,6 +31,7 @@ export default function App() {
     HOST: 1,
   });
   const [isRulesOpen, setIsRulesOpen] = useState<boolean>(false);
+  const [eliminatedPlayer, setEliminatedPlayer] = useState<Player | null>(null);
 
   const [dayNumber, setDayNumber] = useState<number>(1);
   const [winner, setWinner] = useState<WinnerRole | null>(null);
@@ -63,6 +64,7 @@ export default function App() {
     eliminatedPlayer: Player | null,
   ) => {
     setGamePlayers(updatedPlayers);
+    setEliminatedPlayer(eliminatedPlayer);
 
     const winner = checkWinConditions(updatedPlayers, eliminatedPlayer, false);
 
@@ -79,6 +81,7 @@ export default function App() {
     eliminatedPlayer: Player | null,
   ) => {
     setGamePlayers(updatedPlayers);
+    setEliminatedPlayer(eliminatedPlayer);
 
     const winner = checkWinConditions(updatedPlayers, eliminatedPlayer, true);
 
@@ -148,7 +151,7 @@ export default function App() {
         {(step === 'DAWN' || step === 'DUSK') && (
           <PhaseTransitionScreen
             type={step}
-            eliminatedPlayer={null}
+            eliminatedPlayer={eliminatedPlayer}
             onPhaseTransitionComplete={handlePhaseTransictionComplete}
           />
         )}

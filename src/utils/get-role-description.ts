@@ -45,7 +45,7 @@ export const MINI_ROLE_DESCRIPTIONS: Record<
     shortDesc: 'Solo trickster. Wins if voted out.',
   },
   HOST: {
-    icon: '🧑',
+    icon: '🤴',
     shortDesc: 'Game Master. Announces roles and leads the story.',
   },
 };

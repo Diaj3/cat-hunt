@@ -12,16 +12,7 @@ export default function PlayersSetupScreen({
   previousGamePlayers,
 }: PlayersSetupScreenProps) {
   const [currentName, setCurrentName] = useState<string>('');
-  const [players, setPlayers] = useState<string[]>(
-    previousGamePlayers || [
-      'example1',
-      'example2',
-      'example3',
-      'example4',
-      'example5',
-      'example6',
-    ],
-  );
+  const [players, setPlayers] = useState<string[]>(previousGamePlayers ?? []);
 
   const handleAddPlayer = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

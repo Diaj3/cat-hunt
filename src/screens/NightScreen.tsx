@@ -39,7 +39,6 @@ export default function NightScreen({
   );
   const isOwlAlive = players.some((p) => p.role === 'OWL' && p.isAlive);
 
-  // Phase Handlers
   const handleNextFromCats = () => {
     handleStartDay();
   };
@@ -82,7 +81,7 @@ export default function NightScreen({
         {phase === 'GUARD_DOG' && (
           <GuardDogPhase
             isGuardDogAlive={isGuardDogAlive}
-            livingPlayers={livingPlayers}
+            livingPlayers={livingPlayers.filter((p) => p.role !== 'GUARD DOG')}
             onSetGuardedTargetId={setGuardTargetId}
             guardedTargetId={guardTargetId}
             onNext={handleNextFromGuardDog}
@@ -92,14 +91,14 @@ export default function NightScreen({
         {phase === 'OWL' && (
           <OwlPhase
             isOwlAlive={isOwlAlive}
-            livingPlayers={livingPlayers}
+            livingPlayers={livingPlayers.filter((p) => p.role !== 'OWL')}
             onNext={handleNextFromOwl}
           />
         )}
 
         {phase === 'CATS' && (
           <CatPhase
-            livingPlayers={livingPlayers}
+            livingPlayers={livingPlayers.filter((p) => p.role !== 'CAT')}
             catTargetId={catTargetId}
             setCatTargetId={setCatTargetId}
             onNext={handleNextFromCats}

@@ -17,6 +17,8 @@ export default function PhaseTransitionScreen({
 }: PhaseTransitionScreenProps) {
   const isDawn = type === 'DAWN';
 
+  console.log('COMPONENT_INIT', { eliminatedPlayer });
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6">
       <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
